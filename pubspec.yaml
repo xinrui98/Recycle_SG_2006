@@ -17,6 +17,8 @@ dependencies:
   tflite: ^1.0.5
   percent_indicator: ^2.1.1+1
   camera: ^0.5.7+4
+  flutter_swiper: ^1.1.6
+
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +32,4 @@ flutter:
   assets:
     - assets/model_unquant.tflite
     - assets/labels.txt
+    - assets/

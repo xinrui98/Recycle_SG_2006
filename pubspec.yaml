@@ -18,6 +18,7 @@ dependencies:
   percent_indicator: ^2.1.1+1
   camera: ^0.5.7+4
   flutter_swiper: ^1.1.6
+  geolocator: ^6.1.0
 
 
 dev_dependencies:

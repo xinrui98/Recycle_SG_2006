@@ -4,12 +4,14 @@ import 'constants.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'data.dart';
 
+
 class MenuPage extends StatefulWidget {
   @override
   _MenuPageState createState() => _MenuPageState();
 }
 
 class _MenuPageState extends State<MenuPage> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,8 +20,7 @@ class _MenuPageState extends State<MenuPage> {
               colors: [gradientStartColor, gradientEndColor],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              stops: [0.3, 0.7]
-          )),
+              stops: [0.3, 0.7])),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,16 +76,23 @@ class _MenuPageState extends State<MenuPage> {
                 ),
                 itemBuilder: (context, index) {
                   return InkWell(
-                    // onTap: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     PageRouteBuilder(
-                    //       pageBuilder: (context, a, b) => DetailPage(
-                    //         planetInfo: planets[index],
-                    //       ),
-                    //     ),
-                    //   );
-                    // },
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailPage(
+                                  planetInfo: planets[index],
+                                )),
+                      );
+                      // Navigator.push(
+                      //   context,
+                      //   PageRouteBuilder(
+                      //     pageBuilder: (context, a, b) => DetailPage(
+                      //       planetInfo: planets[index],
+                      //     ),
+                      //   ),
+                      // );
+                    },
                     child: Stack(
                       children: <Widget>[
                         Column(
@@ -147,10 +155,10 @@ class _MenuPageState extends State<MenuPage> {
                             ),
                           ],
                         ),
-                        Hero(
-                          tag: planets[index].position,
-                          child: Image.asset(planets[index].iconImage),
-                        ),
+                        // Hero(
+                        //   tag: planets[index].position,
+                        //   child: Image.asset(planets[index].iconImage),
+                        // ),
                         Positioned(
                           right: 24,
                           bottom: 60,

@@ -1,6 +1,2 @@
-Cardboard
-Glass
-Metal
-Paper
-Plastic
-Non-Recyclables
+recyclable
+trash

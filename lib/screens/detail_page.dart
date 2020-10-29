@@ -35,7 +35,7 @@ class DetailPage extends StatelessWidget {
                           textAlign: TextAlign.left,
                         ),
                         Text(
-                          'Solar System',
+                          'Recyclables',
                           style: TextStyle(
                             fontFamily: 'Avenir',
                             fontSize: 31,

@@ -17,14 +17,13 @@ class PlanetInfo {
 List<PlanetInfo> planets = [
   PlanetInfo(1,
       name: 'Paper',
-      iconImage: 'assets/mercury.png',
+      iconImage: 'assets/earth.png',
       description:
-      "Zipping around the sun in only 88 days, Mercury is the closest planet to the sun, and it's also the smallest, only a little bit larger than Earth's moon. Because its so close to the sun (about two-fifths the distance between Earth and the sun), Mercury experiences dramatic changes in its day and night temperatures: Day temperatures can reach a scorching 840  F (450 C), which is hot enough to melt lead. Meanwhile on the night side, temperatures drop to minus 290 F (minus 180 C).",
+      "Recycled paper is a great source of paper fibres. Incorporating a mixture of recycled paper fibre reduces the number of trees being cut down.",
       images: [
-        'https://cdn.pixabay.com/photo/2013/07/18/10/57/mercury-163610_1280.jpg',
-        'https://cdn.pixabay.com/photo/2014/07/01/11/38/planet-381127_1280.jpg',
-        'https://cdn.pixabay.com/photo/2015/06/26/18/48/mercury-822825_1280.png',
-        'https://image.shutterstock.com/image-illustration/mercury-high-resolution-images-presents-600w-367615301.jpg'
+        'https://cdn.pixabay.com/photo/2014/12/27/15/34/notebook-581128_1280.jpg',
+        'https://cdn.pixabay.com/photo/2016/08/23/12/37/files-1614223_1280.jpg',
+        'https://cdn.pixabay.com/photo/2018/03/25/13/43/garbage-3259455_1280.jpg',
       ]),
   PlanetInfo(2,
       name: 'Plastic',

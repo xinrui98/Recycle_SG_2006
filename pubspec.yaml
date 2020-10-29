@@ -27,6 +27,7 @@ dependencies:
   latlng: any
   geocoder: ^0.2.1
   flutter_google_places: ^0.2.6
+  fluttertoast: ^3.1.3
 
 
 

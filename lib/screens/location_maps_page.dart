@@ -49,29 +49,59 @@ class _LocationMapsPageState extends State<LocationMapsPage> {
     }
   }
 
-  GoogleMapController mapController;
+  // GoogleMapController mapController;
+  //
+  // // final Map<String, Marker> _markers = {};
+  // Set<Marker> markers = Set();
+  //
+  // void _onMapCreated(GoogleMapController controller) {
+  //   mapController = controller;
+  //   final nearestBinsLatsTest = [1.34948, 1.3404, 1.3328];
+  //   final nearestBinsLongsTest = [103.69456, 103.7090, 103.7433];
+  //
+  //   setState(() {
+  //     markers.clear();
+  //     for (int i = 0; i < 10; i++) {
+  //       print(nearestTenBinsLats[i]);
+  //       print(nearestTenBinsLong[i]);
+  //       final marker = Marker(
+  //         markerId: MarkerId("Nearest bins"),
+  //         position: LatLng(nearestTenBinsLats[i],
+  //             nearestTenBinsLong[i]), // change to bins
+  //       );
+  //       markers.add(marker);
+  //     }
+  //   });
+  // }
 
-  // final Map<String, Marker> _markers = {};
-  Set<Marker> markers = Set();
+  //new
+  GoogleMapController mapController;
+  Map<String, Marker> markers = {};
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
-    final nearestBinsLatsTest = [1.34948, 1.3404, 1.3328];
-    final nearestBinsLongsTest = [103.69456, 103.7090, 103.7433];
+    // final nearestBinsLatsTest = [1.34948, 1.3404, 1.3328];
+    // final nearestBinsLongsTest = [103.69456, 103.7090, 103.7433];
+    //markers.clear();
+    for (int i = 0; i < 10; i++) {
+      var markerIDVal = markers.length + 1;
+      String mar = markerIDVal.toString();
+      print(nearestTenBinsLats[i]);
+      print(nearestTenBinsLong[i]);
 
-    setState(() {
-      markers.clear();
-      for (int i = 0; i < 10; i++) {
-        print(nearestTenBinsLats[i]);
-        print(nearestTenBinsLong[i]);
-        final marker = Marker(
-          markerId: MarkerId("Nearest bins"),
-          position: LatLng(nearestTenBinsLats[i],
-              nearestTenBinsLong[i]), // change to bins
-        );
-        markers.add(marker);
-      }
-    });
+      final MarkerId markerId = MarkerId(mar);
+      final Marker marker = Marker(
+        markerId: markerId,
+        position: LatLng(
+            nearestTenBinsLats[i], nearestTenBinsLong[i]), // change to bins
+      );
+
+      setState(() {
+        markers[markerId.toString()] = marker;
+      });
+    }
+    print("MARKERS SET");
+    print(markers);
   }
 
   @override
@@ -91,7 +121,7 @@ class _LocationMapsPageState extends State<LocationMapsPage> {
             target: LatLng(1.3543, 103.6869),
             zoom: 15.0,
           ),
-          markers: markers,
+          markers: Set<Marker>.of(markers.values),
         ),
         // floatingActionButton: FloatingActionButton(
         //   onPressed: () {

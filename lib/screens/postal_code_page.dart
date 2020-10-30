@@ -204,7 +204,7 @@ class _GeocodeViewState extends State<GeocodeView> {
                   keyboardType: TextInputType.number,
                   controller: _controller,
                   decoration: new InputDecoration(
-                    hintText: "Enter an address",
+                    hintText: "Enter a postal code",
                     // errorText:
                     //     validatePostalResults ? null : "Invalid Postal Code"
                   ),
@@ -318,7 +318,7 @@ class _MyPostalAppState extends State<MyPostalApp> {
           length: 2,
           child: new Scaffold(
             appBar: new AppBar(
-              title: new Text('Geocoder'),
+              title: new Text('Postal Code Entry'),
               // actions: <Widget>[
               //   new PopupMenuButton<Geocoding>(
               //     // overflow menu

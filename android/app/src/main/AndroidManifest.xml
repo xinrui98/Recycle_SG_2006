@@ -10,8 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="tensorflow_lite_flutter"
-        android:icon="@mipmap/ic_launcher">
+        android:label="SG! Recycle"
+        android:icon="@mipmap/launcher_icon">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAl7avSzQJm_T9Mm6ge3hVrO9nYePjWi9M"/>
         <activity

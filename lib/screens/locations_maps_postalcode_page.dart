@@ -65,6 +65,19 @@ class _LocationMapsPostalCodePageState
     // final nearestBinsLatsTest = [1.34948, 1.3404, 1.3328];
     // final nearestBinsLongsTest = [103.69456, 103.7090, 103.7433];
     //markers.clear();
+    // var markerIDVal = markers.length + 1;
+    // String mar = markerIDVal.toString();
+    //
+    // final MarkerId markerId = MarkerId(mar);
+    // final Marker marker = Marker(
+    //   markerId: markerId,
+    //   position: LatLng(widget.lat, widget.long),
+    //   icon: BitmapDescriptor.fromAssetImage("assets/download.jpeg"),
+    // );
+
+    // final nearestBinsLatsTest = [1.34948, 1.3404, 1.3328];
+    // final nearestBinsLongsTest = [103.69456, 103.7090, 103.7433];
+    //markers.clear();
     for (int i = 0; i < 10; i++) {
       var markerIDVal = markers.length + 1;
       String mar = markerIDVal.toString();
@@ -93,14 +106,15 @@ class _LocationMapsPostalCodePageState
         appBar: AppBar(
           title:
               // Text('${currentPostion.latitude}, ${currentPostion.longitude}'),
-              Text('hello'),
-          backgroundColor: Colors.green[700],
+              Text('10 Nearest Bins'),
+          backgroundColor: Colors.blue,
         ),
         body: GoogleMap(
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
             // target: LatLng(widget.lat,widget.long),
-            target: LatLng(1.3543, 103.6869),
+            // target: LatLng(1.3543, 103.6869),
+            target: LatLng(widget.lat, widget.long),
             zoom: 15.0,
           ),
           markers: Set<Marker>.of(markers.values),

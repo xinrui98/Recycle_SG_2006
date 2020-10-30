@@ -20,13 +20,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static double lat = 1.2907;
-  static double long = 103.8517;
+  double lat;
+  double long;
+
   PageController _pageController = PageController();
   List<Widget> _screens = [
     MenuPage(),
     DetectScreen(title: "Detect Recyclable"),
-    LocationMapsPage(lat: lat, long: long),
+    LocationMapsPage(),
+    // LocationMapsPage(),
     MyPostalApp(),
     // LocationMapsPage(),
   ];
@@ -37,15 +39,20 @@ class _HomePageState extends State<HomePage> {
     _pageController.jumpToPage(selectedIndex);
   }
 
-  void _getCurrentLocation() async {
+  Future<List<double>> _getCurrentLocation() async {
     final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     print(position);
-
+    List coordinates = [];
     setState(() {
       lat = position.latitude;
       long = position.longitude;
+      print("SET STATE LAT");
+      print(lat);
     });
+    coordinates.add(lat);
+    coordinates.add(long);
+    return coordinates;
   }
 
   int _currentIndex = 0;
@@ -85,10 +92,12 @@ class _HomePageState extends State<HomePage> {
             // distanceCalculator.main();
             setState(() {
               _currentIndex = index;
+              // if (index == 2) {
+              //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //     return LocationMapsPage(lat: lat, long: long);
+              //   }));
+              // }
               _onItemTapped(_currentIndex);
-              if (index == 2) {
-                _getCurrentLocation();
-              }
             });
           },
         ));

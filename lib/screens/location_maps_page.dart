@@ -20,6 +20,8 @@ class _LocationMapsPageState extends State<LocationMapsPage> {
   List nearestTenBinsList = [];
   List nearestTenBinsLats = [];
   List nearestTenBinsLong = [];
+  // double currentLat;
+  // double currentLong;
 
   @override
   void initState() {
@@ -29,17 +31,36 @@ class _LocationMapsPageState extends State<LocationMapsPage> {
     super.initState();
   }
 
-  void _getUserLocation() async {
-    var position = await GeolocatorPlatform.instance
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  // original code
+  // void _getUserLocation() async {
+  //   var position = await GeolocatorPlatform.instance
+  //       .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  //   setState(() {
+  //     currentPostion = LatLng(position.latitude, position.longitude);
+  //   });
+  //
+  //   var distanceCalculator = DistanceCalculator();
+  //   nearestTenBinsList =
+  //       distanceCalculator.main(position.latitude, position.longitude);
+  //   for (int i = 0; i < nearestTenBinsList.length; i++) {
+  //     if (i % 2 == 0) {
+  //       nearestTenBinsLats.add(nearestTenBinsList[i]);
+  //     } else {
+  //       nearestTenBinsLong.add(nearestTenBinsList[i]);
+  //     }
+  //   }
+  // }
 
-    setState(() {
-      currentPostion = LatLng(position.latitude, position.longitude);
-    });
+  void _getUserLocation() async {
+    // var position = await GeolocatorPlatform.instance
+    //     .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    // setState(() {
+    //   currentPostion = LatLng(position.latitude, position.longitude);
+    // });
 
     var distanceCalculator = DistanceCalculator();
     nearestTenBinsList =
-        distanceCalculator.main(position.latitude, position.longitude);
+        distanceCalculator.main(1.3543,103.6869);
     for (int i = 0; i < nearestTenBinsList.length; i++) {
       if (i % 2 == 0) {
         nearestTenBinsLats.add(nearestTenBinsList[i]);
@@ -111,14 +132,17 @@ class _LocationMapsPageState extends State<LocationMapsPage> {
         appBar: AppBar(
           title:
               // Text('${currentPostion.latitude}, ${currentPostion.longitude}'),
-              Text('hello'),
-          backgroundColor: Colors.green[700],
+              Text('10 Nearest Bins'),
+          backgroundColor: Colors.blue,
         ),
         body: GoogleMap(
+          myLocationEnabled: true,
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
-            // target: LatLng(widget.lat,widget.long),
-            target: LatLng(1.3543, 103.6869),
+            target: LatLng(1.3543,103.6869),
+            //worked for original
+            // target: currentPostion,
+            // target: LatLng(1.3543, 103.6869),
             zoom: 15.0,
           ),
           markers: Set<Marker>.of(markers.values),

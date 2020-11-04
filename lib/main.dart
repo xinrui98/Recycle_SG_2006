@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tensorflow_lite_flutter/screens/detect_screen.dart';
+import 'package:tensorflow_lite_flutter/screens/ItemScanner.dart';
 import 'package:tensorflow_lite_flutter/screens/home_page.dart';
 
 void main() => runApp(MyApp());

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:tensorflow_lite_flutter/helpers/app_helper.dart';
 import 'package:tensorflow_lite_flutter/helpers/camera_helper.dart';
-import 'package:tensorflow_lite_flutter/helpers/tflite_helper.dart';
+import 'package:tensorflow_lite_flutter/helpers/ItemClassifier.dart';
 import 'package:tensorflow_lite_flutter/models/result.dart';
 
-class DetectScreen extends StatefulWidget {
-  DetectScreen({Key key, this.title}) : super(key: key);
+class ItemScanner extends StatefulWidget {
+  ItemScanner({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -16,7 +16,7 @@ class DetectScreen extends StatefulWidget {
   _DetectScreenPageState createState() => _DetectScreenPageState();
 }
 
-class _DetectScreenPageState extends State<DetectScreen>
+class _DetectScreenPageState extends State<ItemScanner>
     with TickerProviderStateMixin {
   AnimationController _colorAnimController;
   Animation _colorTween;
@@ -27,9 +27,9 @@ class _DetectScreenPageState extends State<DetectScreen>
     super.initState();
 
     //Load TFLite Model
-    TFLiteHelper.loadModel().then((value) {
+    ItemClassifier.loadModel().then((value) {
       setState(() {
-        TFLiteHelper.modelLoaded = true;
+        ItemClassifier.modelLoaded = true;
       });
     });
 
@@ -40,7 +40,7 @@ class _DetectScreenPageState extends State<DetectScreen>
     _setupAnimation();
 
     //Subscribe to TFLite's Classify events
-    TFLiteHelper.tfLiteResultsController.stream.listen((value) {
+    ItemClassifier.tfLiteResultsController.stream.listen((value) {
       value.forEach((element) {
         _colorAnimController.animateTo(element.confidence,
             curve: Curves.bounceIn, duration: Duration(milliseconds: 500));
@@ -90,7 +90,7 @@ class _DetectScreenPageState extends State<DetectScreen>
 
   @override
   void dispose() {
-    TFLiteHelper.disposeModel();
+    ItemClassifier.disposeModel();
     CameraHelper.camera.dispose();
     AppHelper.log("dispose", "Clear resources.");
     super.dispose();
@@ -151,7 +151,7 @@ class _DetectScreenPageState extends State<DetectScreen>
   void _setupAnimation() {
     _colorAnimController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    _colorTween = ColorTween(begin: Colors.green, end: Colors.red)
+    _colorTween = ColorTween(begin: Colors.red, end: Colors.green)
         .animate(_colorAnimController);
   }
 }

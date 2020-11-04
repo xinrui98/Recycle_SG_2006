@@ -1,25 +1,6 @@
-import 'dart:collection';
-import 'dart:convert';
-import 'dart:ffi';
-import 'dart:math';
-import 'package:csv/csv.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:geocoder/geocoder.dart';
-import 'package:tensorflow_lite_flutter/helpers/BinLocations.dart';
-import 'package:tensorflow_lite_flutter/models/MyCoordinates.dart';
-
-import 'package:flutter/material.dart';
-import 'dart:async' show Future;
-import 'package:flutter/services.dart' show rootBundle;
-
-class DistanceCalculator {
-
-  List<double> recyclingBins = BinLocations().getBinArray();
+class BinLocations {
 
 
-  /*
   List<double> recyclingBins = [
     1.32213,
     103.77007,
@@ -25178,85 +25159,9 @@ class DistanceCalculator {
     1.43278,
     103.83122
   ];
-   */
 
-  HashMap<MyCoordinates, double> nearestBinsArray;
-  Coordinates currentUserLocation;
-  List<double> recyclingBinsLat = [];
-  List<double> recyclingBinsLong = [];
-  List<MyCoordinates> recyclingBinsCoord = [];
-  double distanceFromUser;
-
-  void getCoord() {
-    for (int i = 0; i < recyclingBins.length; i++) {
-      //if even, is lat
-      if (i % 2 == 0) {
-        recyclingBinsLat.add(recyclingBins[i]);
-        //if odd, is long
-      } else {
-        recyclingBinsLong.add(recyclingBins[i]);
-      }
-    }
-    for (int j = 0; j < recyclingBinsLat.length; j++) {
-      recyclingBinsCoord
-          .add(MyCoordinates(recyclingBinsLat[j], recyclingBinsLong[j]));
-    }
+  List<double> getBinArray(){
+    return recyclingBins;
   }
 
-  // compare distance
-  Map<MyCoordinates, double> compareDistance(
-      MyCoordinates currentLocation, List<MyCoordinates> binsLocations) {
-    double x1 = currentLocation.getLat();
-    double y1 = currentLocation.getLong();
-
-    double x2;
-    double y2;
-
-    Map<MyCoordinates, double> nearestBinsArray = {};
-
-    // iterate through the HashMap
-    for (int i = 0; i < binsLocations.length; i++) {
-      x2 = binsLocations[i].getLat();
-      y2 = binsLocations[i].getLong();
-      distanceFromUser = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
-      nearestBinsArray.putIfAbsent(binsLocations[i], () => distanceFromUser);
-    }
-
-    return nearestBinsArray;
-  }
-
-  // to sort the hashmap by values
-  Map<MyCoordinates, double> sortHashMap(
-      Map<MyCoordinates, double> nearestRecyclingBins) {
-    var sortedEntries = nearestRecyclingBins.entries.toList()
-      ..sort((e2, e1) {
-        var diff = e2.value.compareTo(e1.value);
-        return diff;
-      });
-    var newMap = Map<MyCoordinates, double>.fromEntries(sortedEntries);
-
-    return newMap;
-  }
-
-  List main(double lat, double long) {
-    // MyCoordinates currentLocation = new MyCoordinates(1.354071, 103.940392);
-    MyCoordinates currentLocation = new MyCoordinates(lat, long);
-    Map<MyCoordinates, double> distanceMap;
-    getCoord();
-    distanceMap = compareDistance(currentLocation, recyclingBinsCoord);
-    LinkedHashMap<MyCoordinates, double> sortedMap;
-    sortedMap = sortHashMap(distanceMap);
-    int i = 0;
-    List finalList = [];
-    for (MyCoordinates name in sortedMap.keys) {
-      MyCoordinates key = name;
-      double value = sortedMap[key];
-      finalList.add(key.getLat());
-      finalList.add(key.getLong());
-      i++;
-      if (i == 10) break;
-    }
-
-    return finalList;
-  }
 }

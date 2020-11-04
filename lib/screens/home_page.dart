@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tensorflow_lite_flutter/screens/detect_screen.dart';
-import 'package:tensorflow_lite_flutter/screens/location_maps_page.dart';
-import 'package:tensorflow_lite_flutter/screens/location_page.dart';
+import 'package:tensorflow_lite_flutter/screens/ItemScanner.dart';
+import 'package:tensorflow_lite_flutter/screens/LocationFinder.dart';
 import 'package:tensorflow_lite_flutter/screens/menu_page.dart';
-import 'package:tensorflow_lite_flutter/screens/postal_code_page.dart';
+import 'package:tensorflow_lite_flutter/screens/PostalVerifier.dart';
 import 'package:tensorflow_lite_flutter/screens/recyclable_info_screen.dart';
 import 'detail_page.dart';
 import 'constants.dart';
@@ -26,11 +25,9 @@ class _HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
   List<Widget> _screens = [
     MenuPage(),
-    DetectScreen(title: "Detect Recyclable"),
-    LocationMapsPage(),
-    // LocationMapsPage(),
-    MyPostalApp(),
-    // LocationMapsPage(),
+    ItemScanner(title: "Detect Recyclable"),
+    LocationFinder(),
+    PostalVerifier(),
   ];
 
   void _onPageChanged(int index) {}
@@ -47,8 +44,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       lat = position.latitude;
       long = position.longitude;
-      print("SET STATE LAT");
-      print(lat);
     });
     coordinates.add(lat);
     coordinates.add(long);
@@ -88,15 +83,9 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Colors.blue),
           ],
           onTap: (index) {
-            // var distanceCalculator = DistanceCalculator();
-            // distanceCalculator.main();
             setState(() {
               _currentIndex = index;
-              // if (index == 2) {
-              //   Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //     return LocationMapsPage(lat: lat, long: long);
-              //   }));
-              // }
+
               _onItemTapped(_currentIndex);
             });
           },

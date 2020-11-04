@@ -21,7 +21,7 @@ List<PlanetInfo> planets = [
       description:
       "Recycled paper is a great source of paper fibres. Incorporating a mixture of recycled paper fibre reduces the number of trees being cut down.",
       images: [
-        'https://cdn.pixabay.com/photo/2014/12/27/15/34/notebook-581128_1280.jpg',
+        'https://cdn.pixabay.com/photo/2016/11/23/15/49/bundle-1853667_1280.jpg',
         'https://cdn.pixabay.com/photo/2016/08/23/12/37/files-1614223_1280.jpg',
         'https://cdn.pixabay.com/photo/2018/03/25/13/43/garbage-3259455_1280.jpg',
       ]),
@@ -31,8 +31,9 @@ List<PlanetInfo> planets = [
       description:
       "After processing, the plastic strands are cut into pellets to be used as material for new products. ",
       images: [
-        'https://cdn.pixabay.com/photo/2011/12/13/14/39/venus-11022_1280.jpg',
-        'https://image.shutterstock.com/image-photo/solar-system-venus-second-planet-600w-515581927.jpg'
+        'https://cdn.pixabay.com/photo/2012/10/09/05/53/bottles-60479_1280.jpg',
+        'https://cdn.pixabay.com/photo/2020/05/04/10/31/the-bottle-5128607_1280.jpg',
+        'https://cdn.pixabay.com/photo/2018/07/15/21/04/recycle-3540561_1280.jpg'
       ]),
   PlanetInfo(3,
       name: 'Glass',
@@ -40,9 +41,9 @@ List<PlanetInfo> planets = [
       description:
       "Recycled glass are cleaned and crushed into cullets, which are melted to form new products. ",
       images: [
-        'https://cdn.pixabay.com/photo/2012/10/09/05/53/bottles-60479_1280.jpg',
-        'https://cdn.pixabay.com/photo/2020/05/04/10/31/the-bottle-5128607_1280.jpg',
-        'https://cdn.pixabay.com/photo/2018/07/15/21/04/recycle-3540561_1280.jpg'
+        'https://cdn.pixabay.com/photo/2012/09/18/20/09/bottles-57139_1280.jpg',
+        'https://cdn.pixabay.com/photo/2013/02/20/11/30/bottle-83756_1280.jpg',
+        'https://cdn.pixabay.com/photo/2018/02/21/19/36/glass-3171311_1280.jpg'
       ]),
   PlanetInfo(4,
       name: 'Metal',

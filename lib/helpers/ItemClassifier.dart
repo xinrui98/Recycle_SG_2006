@@ -6,7 +6,7 @@ import 'package:tflite/tflite.dart';
 
 import 'app_helper.dart';
 
-class TFLiteHelper {
+class ItemClassifier {
 
   static StreamController<List<Result>> tfLiteResultsController = new StreamController.broadcast();
   static List<Result> _outputs = List();

@@ -84,14 +84,6 @@ class _MenuPageState extends State<MenuPage> {
                                   planetInfo: planets[index],
                                 )),
                       );
-                      // Navigator.push(
-                      //   context,
-                      //   PageRouteBuilder(
-                      //     pageBuilder: (context, a, b) => DetailPage(
-                      //       planetInfo: planets[index],
-                      //     ),
-                      //   ),
-                      // );
                     },
                     child: Stack(
                       children: <Widget>[
@@ -120,16 +112,6 @@ class _MenuPageState extends State<MenuPage> {
                                       ),
                                       textAlign: TextAlign.left,
                                     ),
-                                    // Text(
-                                    //   'Recyclables',
-                                    //   style: TextStyle(
-                                    //     fontFamily: 'Avenir',
-                                    //     fontSize: 23,
-                                    //     color: primaryTextColor,
-                                    //     fontWeight: FontWeight.w500,
-                                    //   ),
-                                    //   textAlign: TextAlign.left,
-                                    // ),
                                     SizedBox(height: 32),
                                     Row(
                                       children: <Widget>[

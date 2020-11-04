@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tensorflow_lite_flutter/screens/detect_screen.dart';
+import 'package:tensorflow_lite_flutter/screens/ItemScanner.dart';
 
 final double fontSize = 30;
 
@@ -24,16 +24,6 @@ class _RecyclableInfoScreenState extends State<RecyclableInfoScreen> {
               Padding(
                 padding: EdgeInsets.all(8.0),
               ),
-              // Card(
-              //   child: Padding(
-              //     padding: EdgeInsets.all(20.0),
-              //     child: Text(
-              //       'What are recyclables?',
-              //       style: TextStyle(fontSize: fontSize),
-              //     ),
-              //   ),
-              //   color: Color.fromRGBO(75, 172, 198, 0.3),
-              // ),
               Text(
                 'What are recyclables?',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
@@ -54,7 +44,7 @@ class _RecyclableInfoScreenState extends State<RecyclableInfoScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DetectScreen(
+                        builder: (context) => ItemScanner(
                               title: "Verify Recyclables",
                             )),
                   );

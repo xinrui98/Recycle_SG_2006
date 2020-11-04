@@ -5,11 +5,11 @@ import 'package:geocoder/geocoder.dart';
 import 'package:geocoder/services/base.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'locations_maps_postalcode_page.dart';
+import 'ManualLocationFinder.dart';
 
-class MyPostalApp extends StatefulWidget {
+class PostalVerifier extends StatefulWidget {
   @override
-  _MyPostalAppState createState() => new _MyPostalAppState();
+  _PostalVerifierState createState() => new _PostalVerifierState();
 }
 
 class AppState extends InheritedWidget {
@@ -69,7 +69,7 @@ class _GeocodeViewState extends State<GeocodeView> {
       print(this.results[0].coordinates.latitude);
       print(this.results[0].coordinates.longitude);
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return LocationMapsPostalCodePage(lat: this.results[0].coordinates.latitude, long: this.results[0].coordinates.longitude,);
+        return ManualLocationFinder(lat: this.results[0].coordinates.latitude, long: this.results[0].coordinates.longitude,);
       }));
     } catch (e) {
       print("Error occured: $e");
@@ -221,81 +221,8 @@ class _GeocodeViewState extends State<GeocodeView> {
   }
 }
 
-// class ReverseGeocodeView extends StatefulWidget {
-//   ReverseGeocodeView();
-//
-//   @override
-//   _ReverseGeocodeViewState createState() => new _ReverseGeocodeViewState();
-// }
-//
-// class _ReverseGeocodeViewState extends State<ReverseGeocodeView> {
-//   final TextEditingController _controllerLongitude =
-//   new TextEditingController();
-//   final TextEditingController _controllerLatitude = new TextEditingController();
-//
-//   _ReverseGeocodeViewState();
-//
-//   List<Address> results = [];
-//
-//   bool isLoading = false;
-//
-//   Future search() async {
-//     this.setState(() {
-//       this.isLoading = true;
-//     });
-//
-//     try {
-//       var geocoding = AppState.of(context).mode;
-//       var longitude = double.parse(_controllerLongitude.text);
-//       var latitude = double.parse(_controllerLatitude.text);
-//       var results = await geocoding
-//           .findAddressesFromCoordinates(new Coordinates(latitude, longitude));
-//       this.setState(() {
-//         this.results = results;
-//       });
-//     } catch (e) {
-//       print("Error occured: $e");
-//     } finally {
-//       this.setState(() {
-//         this.isLoading = false;
-//       });
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return new Column(children: <Widget>[
-//       new Card(
-//         child: new Padding(
-//           padding: const EdgeInsets.all(10.0),
-//           child: new Row(
-//             children: <Widget>[
-//               new Expanded(
-//                 child: new Column(
-//                   children: <Widget>[
-//                     new TextField(
-//                       controller: _controllerLatitude,
-//                       decoration: new InputDecoration(hintText: "Latitude"),
-//                     ),
-//                     new TextField(
-//                       controller: _controllerLongitude,
-//                       decoration: new InputDecoration(hintText: "Longitude"),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               new IconButton(
-//                   icon: new Icon(Icons.search), onPressed: () => search())
-//             ],
-//           ),
-//         ),
-//       ),
-//       new Expanded(child: new AddressListView(this.isLoading, this.results)),
-//     ]);
-//   }
-// }
-//
-class _MyPostalAppState extends State<MyPostalApp> {
+
+class _PostalVerifierState extends State<PostalVerifier> {
   Geocoding geocoding = Geocoder.local;
 
   final Map<String, Geocoding> modes = {
@@ -319,33 +246,6 @@ class _MyPostalAppState extends State<MyPostalApp> {
           child: new Scaffold(
             appBar: new AppBar(
               title: new Text('Postal Code Entry'),
-              // actions: <Widget>[
-              //   new PopupMenuButton<Geocoding>(
-              //     // overflow menu
-              //     onSelected: _changeMode,
-              //     itemBuilder: (BuildContext context) {
-              //       return modes.keys.map((String mode) {
-              //         return new CheckedPopupMenuItem<Geocoding>(
-              //           checked: modes[mode] == this.geocoding,
-              //           value: modes[mode],
-              //           child: new Text(mode),
-              //         );
-              //       }).toList();
-              //     },
-              //   ),
-              // ],
-              // bottom: new TabBar(
-              //   tabs: [
-              //     new Tab(
-              //       text: "Query",
-              //       icon: new Icon(Icons.search),
-              //     ),
-              //     // new Tab(
-              //     //   text: "Coordinates",
-              //     //   icon: new Icon(Icons.pin_drop),
-              //     // ),
-              //   ],
-              // ),
             ),
             body: new GeocodeView(),
             // new ReverseGeocodeView(),

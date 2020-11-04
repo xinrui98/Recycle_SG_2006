@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tensorflow_lite_flutter/helpers/app_helper.dart';
-import 'package:tensorflow_lite_flutter/helpers/tflite_helper.dart';
+import 'package:tensorflow_lite_flutter/helpers/ItemClassifier.dart';
 
 class CameraHelper {
   static CameraController camera;
@@ -33,11 +33,11 @@ class CameraHelper {
           "_initializeCamera", "Camera initialized, starting camera stream..");
 
       camera.startImageStream((CameraImage image) {
-        if (!TFLiteHelper.modelLoaded) return;
+        if (!ItemClassifier.modelLoaded) return;
         if (isDetecting) return;
         isDetecting = true;
         try {
-          TFLiteHelper.classifyImage(image);
+          ItemClassifier.classifyImage(image);
         } catch (e) {
           print(e);
         }
